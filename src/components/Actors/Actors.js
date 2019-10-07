@@ -4,6 +4,7 @@ import ActorForm from "../ActorForm/ActorForm";
 
 
 class Actors extends Component {
+
        render() {
        return (
          <div>

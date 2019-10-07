@@ -26,10 +26,10 @@ const MovieForm = (props) => {
               
               <div className="form-group">
               <label htmlFor="description">Description</label>
-              <input
+              <textarea
                 className="form-control"
                 id="description"
-                type="textarea"
+                type="text"
               />
               </div>
             
