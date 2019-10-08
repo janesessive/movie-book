@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { validateField } from './ActorFormValidation';
+import  * as dataService  from '../../dataService';
 
 
 class ActorForm extends Component {
@@ -13,6 +14,15 @@ class ActorForm extends Component {
       gender: ""
     }
   };
+
+  componentDidMount = async() => {
+    let id = this.props.match.params.id;
+    let actor = await dataService.getActor(id);
+    this.setState({values: actor});
+
+    debugger;
+
+  }
 
   setError = (name, errorMessage)=>{
     let errors = {...this.state.errors};    
@@ -63,6 +73,7 @@ class ActorForm extends Component {
                 className="form-control"
                 name="firstName"
                 type="text"
+                value={this.state.values.firstName}
                 onChange={this.onFieldChange}
                 onBlur={this.onFieldBlur}
               />
@@ -74,6 +85,7 @@ class ActorForm extends Component {
                 className="form-control"
                 name="lastName"
                 type="text"
+                value={this.state.values.lastName}
                 onChange={this.onFieldChange}
                 onBlur={this.onFieldBlur}
                 

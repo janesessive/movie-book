@@ -5,6 +5,7 @@ import Genres from './components/Genres/Genres';
 import Actors from './components/Actors/Actors';
 import Navbar from './components/Navbar/Navbar';
 import { Switch, Route, Link } from 'react-router-dom';
+import ActorForm from './components/ActorForm/ActorForm';
 
 class App extends Component {
   render() {
@@ -18,6 +19,9 @@ class App extends Component {
           <Route exact path="/" component={Movies} />
           <Route path="/genres" component={Genres} />
           <Route path="/actors" component={Actors} />
+          <Route exact path="/actor" component={ActorForm} />
+          <Route path="/actor/:id" component={ActorForm} />
+
           
         </Switch>
       </main>

@@ -15,6 +15,14 @@ export const getActors = async() => {
   return actors;
 
 };
+
+export const getActor = async(id) => {
+  const response = await axios.get('actors/'+ id);
+  const actors = response.data;
+  
+  return actors;
+
+};
 // export const getExpenses = async(filter) => {
    
 
