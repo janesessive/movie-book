@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { validateField } from './ActorFormValidation';
+
 
 class ActorForm extends Component {
   state = {
@@ -12,10 +14,22 @@ class ActorForm extends Component {
     }
   };
 
-  onFieldChange = e => {
+  setError = (name, errorMessage)=>{
+    let errors = {...this.state.errors};    
+    errors[name] = errorMessage;    
+    this.setState({errors});
+  };
+
+    onFieldChange = e => {
     let values = { ...this.state.values };
-    values[e.target.name] = e.target.value;
-    this.setState({ values });
+    const target = e.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    values[name] = value;
+    this.setState({ values }, ()=>{
+      let errorMessage = validateField(name, value);
+      this.setError(name, errorMessage);
+    });
   };
 
   onFieldBlur = e => {
@@ -24,15 +38,20 @@ class ActorForm extends Component {
     this.setState({ touched });
   };
 
-  onSubmitHandler = () => {
-    let newActor = { ...this.state.values };
-    let actors = [...this.state.actors];
-    actors = actors.push(newActor);
+  onSubmitHandler=()=> {
+    console.log('submitted');
+  }
 
-    this.setState({ actors: actors });
-  };
+  
 
   render() {
+    let errors = false;
+    if (!this.state.values.firstName || 
+        !this.state.values.lastName|| 
+         this.state.errors.firstName ||
+         this.state.errors.lastName) {
+      errors = true;
+    }
     return (
       <div>
         <span>Actor</span>
@@ -47,6 +66,7 @@ class ActorForm extends Component {
                 onChange={this.onFieldChange}
                 onBlur={this.onFieldBlur}
               />
+              <span style={{color: 'red'}}>{this.state.errors.firstName}</span>
             </div>
             <div className="form-group">
               <label htmlFor="lastName">Last Name</label>
@@ -56,13 +76,16 @@ class ActorForm extends Component {
                 type="text"
                 onChange={this.onFieldChange}
                 onBlur={this.onFieldBlur}
+                
               />
+              <span style={{color: 'red'}}>{this.state.errors.lastName}</span>
             </div>
 
             <button
               type="button"
               className="btn btn-primary"
-              onClick={e => this.onSubmitHandler(e)}
+              onClick={this.onSubmitHandler}
+              disabled={errors}
             >
               Submit
             </button>
