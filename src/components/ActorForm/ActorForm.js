@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { validateField } from './ActorFormValidation';
 import  * as dataService  from '../../dataService';
-
+const EDIT_MODE = "edit";
+const CREATE_MODE ="create";
 
 class ActorForm extends Component {
   state = {
@@ -15,12 +16,16 @@ class ActorForm extends Component {
     }
   };
 
+  getFormMode = () => {
+    return this.props.match.params.id? EDIT_MODE : CREATE_MODE;
+  }
   componentDidMount = async() => {
     let id = this.props.match.params.id;
+
+    if (id) {
     let actor = await dataService.getActor(id);
     this.setState({values: actor});
-
-    debugger;
+    }
 
   }
 
@@ -49,7 +54,13 @@ class ActorForm extends Component {
   };
 
   onSubmitHandler=()=> {
-    console.log('submitted');
+   const formMode = this.getFormMode();
+   if (formMode===CREATE_MODE) {
+     dataService.addActor(this.state.values);
+   }
+   else {
+    dataService.editActor(this.state.values);
+   }
   }
 
   

@@ -6,14 +6,12 @@ var Actor = new Schema({
     type: String,
     required: true,
     trim: true,
-    minlength: 3,
     maxLength: 30
   },
   lastName: {
     type: String,
     required: true,
     trim: true,
-    minlength: 3,
     maxLength: 30
   }
 });
