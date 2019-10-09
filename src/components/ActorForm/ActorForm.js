@@ -97,6 +97,35 @@ const ActorForm = props => {
             <span style={{ color: "red" }}>{errors.lastName}</span>
           </div>
 
+          <div className="col-auto">
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="gender"
+                      value="1"
+                      checked={values.gender === "1"}
+                      onChange={onFieldChange}
+                    />
+                    <label className="form-check-label" htmlFor="male">
+                      male
+                    </label>
+                  </div>
+                  <div className="form-check form-check-inline">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="gender"
+                      value="2"
+                      checked={values.gender === "2"}
+                      onChange={onFieldChange}
+                    />
+                    <label className="form-check-label" htmlFor="female">
+                      female
+                    </label>
+                  </div>
+                </div>
+
           <button
             type="button"
             className="btn btn-primary"

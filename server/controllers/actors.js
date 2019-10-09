@@ -59,7 +59,8 @@ actorRoutes.route('/:id').put(function(req, res) {
     if (!actor) res.status(404).send('data is not found');
     else {
       actor.firstName = req.body.firstName;
-      actor.lastName = req.body.lastName
+      actor.lastName = req.body.lastName;
+      actor.gender = req.body.gender;
 
       actor
         .save()

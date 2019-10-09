@@ -13,6 +13,10 @@ var Actor = new Schema({
     required: true,
     trim: true,
     maxLength: 30
+  },
+  gender: {
+    type: Number
+    
   }
 });
 
