@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { validateField } from "./ActorFormValidation";
 import * as dataService from "../../dataService";
 const EDIT_MODE = "edit";
@@ -15,34 +15,37 @@ const ActorForm = props => {
   let [touched, setTouched] = useState({});
   let [errors, setErrors] = useState({});
 
-  const getFormMode = () => {
-    return props.match.params.id ? EDIT_MODE : CREATE_MODE;
-  };
-  const loadData = async () => {
-    let id = props.match && props.match.params ? props.match.params.id : null;
-
+  let id = props.match && props.match.params ? props.match.params.id : null;
+  useEffect(() => {
+    let loadData = async()=>{
     if (id) {
       let actor = await dataService.getActor(id);
       setValues(actor);
-    }
-  };
+    }};
 
+    loadData();
+  }, [id]);
+
+  const getFormMode = () => {
+    return props.match.params.id ? EDIT_MODE : CREATE_MODE;
+  };
  
+
   const onFieldChange = e => {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-    const newValues = {...values};    
+    const newValues = { ...values };
     newValues[name] = value;
     setValues(newValues);
     let errorMessage = validateField(name, value);
     errors[name] = errorMessage;
-    setErrors({...errors});
+    setErrors({ ...errors });
   };
 
   const onFieldBlur = e => {
     touched[e.target.name] = true;
-    setTouched({...touched});
+    setTouched({ ...touched });
   };
 
   const onSubmitHandler = () => {
