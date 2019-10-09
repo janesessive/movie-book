@@ -4,8 +4,9 @@ import Movies from './components/Movies/Movies';
 import Genres from './components/Genres/Genres';
 import Actors from './components/Actors/Actors';
 import Navbar from './components/Navbar/Navbar';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import ActorForm from './components/ActorForm/ActorForm';
+import GenreForm from './components/GenreForm/GenreForm';
 
 class App extends Component {
   render() {
@@ -21,6 +22,9 @@ class App extends Component {
           <Route path="/actors" component={Actors} />
           <Route exact path="/actor" component={ActorForm} />
           <Route path="/actor/:id" component={ActorForm} />
+          <Route exact path="/genre/" component={GenreForm} />
+          <Route path="/genre/:id" component={GenreForm} />
+
 
           
         </Switch>

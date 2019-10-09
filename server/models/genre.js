@@ -6,7 +6,6 @@ var Genre = new Schema({
     type: String,
     required: true,
     trim: true,
-    minlength: 3,
     maxLength: 30
   }
 });
