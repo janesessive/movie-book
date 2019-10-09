@@ -13,7 +13,11 @@ var Actor = new Schema({
     required: true,
     trim: true,
     maxlength: 30
+  },
+  gender: {
+    type: Number    
   }
+
 });
 
 module.exports = mongoose.model('Actor', Actor);
