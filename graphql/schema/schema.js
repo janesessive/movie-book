@@ -8,16 +8,30 @@ const {
   GraphQLID,
   GraphQLInt,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLEnumType
 } = graphql;
 
 const ActorType = new GraphQLObjectType({
   name: 'Actor',
   fields: () => ({
-    id: { type: GraphQLID },
+    id: { type: new GraphQLNonNull(GraphQLID) },
     firstName: { type: GraphQLString },
-    lastName: { type: GraphQLString }
+    lastName: { type: GraphQLString },
+    gender: {type: GenderEnumType}
   })
+});
+
+const GenderEnumType = new GraphQLEnumType({
+  name: 'GenderEnum',
+  values: {
+    MALE: {
+      value: 0,
+    },
+    FEMALE: {
+      value: 1,
+    }    
+  },
 });
 
 const RootQuery = new GraphQLObjectType({
@@ -47,12 +61,14 @@ const Mutation = new GraphQLObjectType({
       type: ActorType,
       args: {
         firstName: { type: new GraphQLNonNull(GraphQLString) },
-        lastName: { type: new GraphQLNonNull(GraphQLString) }
+        lastName: { type: new GraphQLNonNull(GraphQLString) },
+        gender: { type: new GraphQLNonNull(GenderEnumType) }
       },
       resolve(parent, args) {
         let actor = new Actor({
           firstName: args.firstName,
-          lastName: args.lastName
+          lastName: args.lastName,
+          gender: args.gender
         });
 
         return actor.save();
@@ -64,12 +80,14 @@ const Mutation = new GraphQLObjectType({
       args: {
         id: { type: GraphQLString },
         firstName: { type: new GraphQLNonNull(GraphQLString) },
-        lastName: { type: new GraphQLNonNull(GraphQLString) }
+        lastName: { type: new GraphQLNonNull(GraphQLString) },
+        gender: { type: new GraphQLNonNull(GenderEnumType) }
       },
       resolve(parent, args) {
         let actorData = {
           firstName: args.firstName,
-          lastName: args.lastName
+          lastName: args.lastName,
+          gender: args.gender
         };
 
         return Actor.findByIdAndUpdate(args.id, actorData);
@@ -85,4 +103,4 @@ const Mutation = new GraphQLObjectType({
   }
 });
 
-module.exports = new GraphQLSchema({ query: RootQuery, mutation: Mutation });
+module.exports = new GraphQLSchema({ query: RootQuery, mutation: Mutation, types:[GenderEnumType] });
