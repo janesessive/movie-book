@@ -23,6 +23,13 @@ export const getActor = async(id) => {
   return actors;
 
 };
+export const getGenre = async(id) => {
+  const response = await axios.get('genres/'+ id);
+  const genres = response.data;
+  
+  return genres;
+
+};
 // export const getExpenses = async(filter) => {
    
 
