@@ -15,7 +15,9 @@ class GenreForm extends Component {
   };
 
   getFormMode = () => {
-    return this.props.match && this.props.match.params.id ? EDIT_MODE : CREATE_MODE;
+    return this.props.match && this.props.match.params.id
+      ? EDIT_MODE
+      : CREATE_MODE;
   };
 
   componentDidMount = async () => {
@@ -61,17 +63,22 @@ class GenreForm extends Component {
     } else {
       dataService.editGenre(this.state.genre);
     }
+    this.setState({
+      touched: {},
+      errors: {},
+      genre: {
+        _id: null,
+        name: ""
+      }
+    });
   };
 
   render() {
     let errors = false;
-    if (
-      !this.state.genre.name ||
-      this.state.errors.name
-    ) {
+    if (!this.state.genre.name || this.state.errors.name) {
       errors = true;
     }
-  
+
     return (
       <div>
         <span>Actor</span>
@@ -87,9 +94,7 @@ class GenreForm extends Component {
                 onChange={this.onFieldChange}
                 onBlur={this.onFieldBlur}
               />
-              <span style={{ color: "red" }}>
-                {this.state.errors.name}
-              </span>
+              <span style={{ color: "red" }}>{this.state.errors.name}</span>
             </div>
             <button
               type="button"
@@ -98,8 +103,8 @@ class GenreForm extends Component {
               disabled={errors}
             >
               Submit
-              </button>
-              <br></br>
+            </button>
+            <br></br>
           </form>
         </div>
         <pre>{JSON.stringify(this.state, null, 2)}</pre>
@@ -107,5 +112,5 @@ class GenreForm extends Component {
     );
   }
 }
-  
-  export default GenreForm;
+
+export default GenreForm;

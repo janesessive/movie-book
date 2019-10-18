@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./Genres.css";
 import GenreForm from "../GenreForm/GenreForm";
-import  * as dataService  from '../../dataService';
+import * as dataService from "../../dataService";
 
 class Genres extends Component {
-  componentDidMount = async() => {
+  componentDidMount = async () => {
     const genres = await dataService.getGenres();
     this.setState({ genres });
- };
+  };
   // async componentDidMount() {
   //   try {
   //     let response = await fetch("http://localhost:4000/api/genres");
@@ -17,12 +17,12 @@ class Genres extends Component {
   //     } else {
   //       console.log("network error")
   //     }
-      
+
   //   } catch (error) {
   //     console.log("no connection");
-      
+
   //   }
-   
+
   // }
   render() {
     return (

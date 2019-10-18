@@ -62,6 +62,16 @@ class ActorForm extends Component {
     } else {
       dataService.editActor(this.state.values);
     }
+    this.setState({
+      touched: {},
+      errors: {},
+      values: {
+        _id: null,
+        firstName: "",
+        lastName: "",
+        gender: ""
+      }
+    });
   };
 
   render() {
