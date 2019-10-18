@@ -15,7 +15,7 @@ class GenreForm extends Component {
   };
 
   getFormMode = () => {
-    return this.props.match.params.id ? EDIT_MODE : CREATE_MODE;
+    return this.props.match && this.props.match.params.id ? EDIT_MODE : CREATE_MODE;
   };
 
   componentDidMount = async () => {
