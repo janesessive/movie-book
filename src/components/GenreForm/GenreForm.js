@@ -15,11 +15,12 @@ const GenreForm = props => {
 
   let id = props.match && props.match.params ? props.match.params.id : null;
   useEffect(() => {
-    let loadData = async()=>{
-    if (id) {
-      let genre = await dataService.getGenre(id);
-      setGenre(genre);
-    }};
+    let loadData = async () => {
+      if (id) {
+        let genre = await dataService.getGenre(id);
+        setGenre(genre);
+      }
+    };
 
     loadData();
   }, [id]);
@@ -27,7 +28,6 @@ const GenreForm = props => {
   const getFormMode = () => {
     return props.match.params.id ? EDIT_MODE : CREATE_MODE;
   };
- 
 
   const onFieldChange = e => {
     const target = e.target;
@@ -53,13 +53,13 @@ const GenreForm = props => {
     } else {
       dataService.editGenre(genre);
     }
+    setGenre({ _id: null, name: "" });
+    setTouched({});
+    setErrors({});
   };
 
   let hasErrors = false;
-  if (
-    !genre.name ||
-    errors.name
-  ) {
+  if (!genre.name || errors.name) {
     hasErrors = true;
   }
 
@@ -80,16 +80,16 @@ const GenreForm = props => {
             <span style={{ color: "red" }}>{errors.name}</span>
           </div>
 
-          <button 
-          type="button" 
-          className="btn btn-primary"
-          onClick={onSubmitHandler}
-          disabled={hasErrors}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={onSubmitHandler}
+            disabled={hasErrors}
+          >
             Submit
           </button>
           <br></br>
         </form>
-        
       </div>
       <pre>{JSON.stringify(genre, null, 2)}</pre>
       <pre>{JSON.stringify(touched, null, 2)}</pre>

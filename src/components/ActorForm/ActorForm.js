@@ -27,7 +27,7 @@ const ActorForm = props => {
   }, [id]);
 
   const getFormMode = () => {
-    return props.match.params.id ? EDIT_MODE : CREATE_MODE;
+    return props.match && props.match.params.id ? EDIT_MODE : CREATE_MODE;
   };
  
 
@@ -54,7 +54,14 @@ const ActorForm = props => {
       dataService.addActor(values);
     } else {
       dataService.editActor(values);
-    }
+    };
+    setValues({_id: null,
+      firstName: "",
+      lastName: "",
+      gender: ""});
+      setTouched({});
+      setErrors({});
+
   };
 
   let hasErrors = false;
