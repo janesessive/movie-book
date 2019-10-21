@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Genres.css";
 import GenreForm from "../GenreForm/GenreForm";
 import  * as dataService  from '../../dataService';
-import DataTable from '../../DataTable/DataTable';
+import DataTable from '../DataTable/DataTable';
 
 class Genres extends Component {
   state = {
