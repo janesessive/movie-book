@@ -1,8 +1,22 @@
 
-import React from 'react';
+import React, { useState, useEffect } from "react";
 
 
 const MovieForm = (props) => {
+  const [movie, setMovies] = useState({
+    _id: null,
+    title: "",
+    year: "",
+    description:""
+
+  });
+
+  const [actors, setActors] = useState([]);
+  const [genres, setGenres] = useState([]);
+
+  // let [touched, setTouched] = useState({});
+  // let [errors, setErrors] = useState({});
+
   
     return (
       <div>
