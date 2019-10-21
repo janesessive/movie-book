@@ -19,7 +19,11 @@ const ActorsSelectForm = props => {
       let selectedNewActors = [...selectedActors];
       selectedNewActors.push(actor);
       setSelectedActors(selectedNewActors);
+    }
 
+    const onChangeSearchField = (e) => {
+      let valueSearch = e.target.value;
+      
 
 
     }
@@ -29,6 +33,7 @@ const ActorsSelectForm = props => {
           <pre>{JSON.stringify(selectedActors, null, 2)}</pre>
           <table className="table table-hover">
         <tbody>
+          <tr><input type='text' onChange={onChangeSearchField}/></tr>
           {actors.map(act=>{
             return <tr><td>{act.firstName + ' ' + act.lastName}</td><td><button onClick={()=>onClickAddActor(act)}>Add</button></td></tr>
           })}

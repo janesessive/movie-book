@@ -26,7 +26,7 @@ const GenreForm = props => {
   }, [id]);
 
   const getFormMode = () => {
-    return props.match.params.id ? EDIT_MODE : CREATE_MODE;
+    return props.match && props.match.params.id ? EDIT_MODE : CREATE_MODE;
   };
 
   const onFieldChange = e => {

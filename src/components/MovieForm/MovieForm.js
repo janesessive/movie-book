@@ -1,6 +1,7 @@
 
 import React from 'react';
 
+
 const MovieForm = (props) => {
   
     return (
@@ -11,7 +12,7 @@ const MovieForm = (props) => {
               <label htmlFor="title">Title</label>
               <input
                 className="form-control"
-                id="title"
+                name="title"
                 type="text"
               />
               </div>
@@ -19,8 +20,24 @@ const MovieForm = (props) => {
               <label htmlFor="year">Year</label>
               <input
                 className="form-control"
-                id="year"
+                name="year"
                 type="number"
+              />
+              </div>
+              <div className="form-group">
+              <label htmlFor="genre">Genre</label>
+              <input
+                className="form-control"
+                name="genre"
+                type="text"
+              />
+              </div>
+              <div className="form-group">
+              <label htmlFor="actors">Actors</label>
+              <input
+                className="form-control"
+                name="actors"
+                type="text"
               />
               </div>
               
@@ -28,7 +45,7 @@ const MovieForm = (props) => {
               <label htmlFor="description">Description</label>
               <textarea
                 className="form-control"
-                id="description"
+                name="description"
                 type="text"
               />
               </div>
