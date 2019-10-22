@@ -82,6 +82,7 @@ const MovieForm = props => {
           </div>
           <div className="form-group">
             <label htmlFor="actors">Actors</label>
+            <div className="input-group">   
             <input
               className="form-control"
               name="actors"
@@ -89,7 +90,11 @@ const MovieForm = props => {
               onClick={onClickSelectActors}
               
             />
-            <ActorsPopup buttonLabel="..."/>
+            <div className="input-group-append">
+        <span className="input-group-text"><ActorsPopup buttonLabel="..."/></span>
+      </div>
+      </div>
+            
           </div>
 
           <div className="form-group">

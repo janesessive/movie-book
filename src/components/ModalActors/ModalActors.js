@@ -11,7 +11,7 @@ const ActorsPopup = props => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle}>
+      <Button onClick={toggle}>
         {buttonLabel}
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
