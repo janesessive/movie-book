@@ -60,7 +60,13 @@ const ActorsSelectForm = props => {
               <tr>
                 <td>{act.firstName + " " + act.lastName}</td>
                 <td>
-                  <button onClick={() => onClickAddActor(act)}>Add</button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => onClickAddActor(act)}
+                  >
+                    Add
+                  </button>
                 </td>
               </tr>
             );

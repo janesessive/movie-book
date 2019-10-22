@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { validateField } from "./MovieFormValidation";
-import ModalActors from '../ModalActors/ModalActors';
+import ActorsPopup from '../ModalActors/ModalActors';
 
 const MovieForm = props => {
   const [movie, setMovie] = useState({
@@ -48,7 +48,6 @@ const MovieForm = props => {
   return (
 
     <div>
-      {modal.show? <ModalActors /> : null}
       <div className="movieForm border">
         <form>
           <div className="form-group">
@@ -90,6 +89,7 @@ const MovieForm = props => {
               onClick={onClickSelectActors}
               
             />
+            <ActorsPopup buttonLabel="..."/>
           </div>
 
           <div className="form-group">

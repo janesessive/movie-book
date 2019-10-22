@@ -1,29 +1,35 @@
-import React from 'react';
-import ActorsSelectForm from '../ActorsSelectForm/ActorsSelectForm';
+import React, { useState } from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import ActorsSelectForm from "../ActorsSelectForm/ActorsSelectForm";
 
+const ActorsPopup = props => {
+  const { buttonLabel, className } = props;
 
-const Modal = (props) => {
-    return (
-        <div className="modal" tabindex="-1" role="dialog">
-  <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title">Add Actors</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div className="modal-body">
-        <ActorsSelectForm />
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div>
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+
+  return (
+    <div>
+      <Button color="primary" onClick={toggle}>
+        {buttonLabel}
+      </Button>
+      <Modal isOpen={modal} toggle={toggle} className={className}>
+        <ModalHeader toggle={toggle}>Add Actors</ModalHeader>
+        <ModalBody>
+          <ActorsSelectForm />
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={toggle}>
+            Apply
+          </Button>{" "}
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
     </div>
-  </div>
-</div>
-    )
+  );
 };
 
-export default Modal;
+export default ActorsPopup;
