@@ -48,11 +48,19 @@ const ActorsSelectForm = props => {
         <tbody>
           <tr>
             <td colSpan="2">
-              <input
-                type="text"
-                style={{ width: "100%" }}
-                onChange={onChangeSearchField}
-              />
+              <div className="input-group">
+                <input
+                  className="form-control"
+                  type="text"
+                  
+                  onChange={onChangeSearchField}
+                />
+                <div className="input-group-append">
+                  <span className="input-group-text">
+                    search
+                  </span>
+                </div>
+              </div>
             </td>
           </tr>
           {viewActors.map(act => {
