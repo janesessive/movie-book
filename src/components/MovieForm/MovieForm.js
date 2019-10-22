@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect } from "react";
+import { validateField } from "./MovieFormValidation";
 
 
 const MovieForm = (props) => {
-  const [movie, setMovies] = useState({
+  const [movie, setMovie] = useState({
     _id: null,
     title: "",
     year: "",
@@ -14,8 +15,8 @@ const MovieForm = (props) => {
   const [actors, setActors] = useState([]);
   const [genres, setGenres] = useState([]);
 
-  // let [touched, setTouched] = useState({});
-  // let [errors, setErrors] = useState({});
+  let [touched, setTouched] = useState({});
+  let [errors, setErrors] = useState({});
 
   
     return (
@@ -28,6 +29,9 @@ const MovieForm = (props) => {
                 className="form-control"
                 name="title"
                 type="text"
+                // value={movie.title}
+                // onChange={onFieldChange}
+                // onBlur={onFieldBlur}
               />
               </div>
               <div className="form-group">

@@ -13,6 +13,8 @@ var Movie = new Schema({
   year: {
       type: Number,
       required: true,
+      min: [1900, 'out of range'],
+      max: 2070
   },
 
   genre: { type: Schema.Types.ObjectId, ref: 'Genre' },
