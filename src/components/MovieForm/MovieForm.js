@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { validateField } from "./MovieFormValidation";
+import ModalActors from '../ModalActors/ModalActors';
 
 const MovieForm = props => {
   const [movie, setMovie] = useState({
@@ -33,7 +34,7 @@ const MovieForm = props => {
     setTouched({ ...touched });
   };
 
-  const onClickSelectGenre = () => {
+  const onClickSelectActors = () => {
     let showModal = { ...modal };
     showModal.show = true;
     setModal(showModal);
@@ -45,7 +46,9 @@ const MovieForm = props => {
   }
 
   return (
+
     <div>
+      {modal.show? <ModalActors /> : null}
       <div className="movieForm border">
         <form>
           <div className="form-group">
@@ -76,16 +79,17 @@ const MovieForm = props => {
           </div>
           <div className="form-group">
             <label htmlFor="genre">Genre</label>
-            <input
-              className="form-control"
-              name="genre"
-              type="text"
-              onClick={onClickSelectGenre}
-            />
+            <input className="form-control" name="genre" type="text" />
           </div>
           <div className="form-group">
             <label htmlFor="actors">Actors</label>
-            <input className="form-control" name="actors" type="text" />
+            <input
+              className="form-control"
+              name="actors"
+              type="text"
+              onClick={onClickSelectActors}
+              
+            />
           </div>
 
           <div className="form-group">
@@ -110,8 +114,8 @@ const MovieForm = props => {
 
           <br></br>
         </form>
-        
-      <pre>{JSON.stringify(modal, null, 2)}</pre>
+
+        <pre>{JSON.stringify(modal, null, 2)}</pre>
       </div>
     </div>
   );
