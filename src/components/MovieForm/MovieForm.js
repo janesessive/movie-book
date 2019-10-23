@@ -91,7 +91,7 @@ const MovieForm = props => {
               
             />
             <div className="input-group-append">
-        <span className="input-group-text"><ActorsPopup buttonLabel="..."/></span>
+        <ActorsPopup className="input-group-text" buttonLabel="..."/>
       </div>
       </div>
             

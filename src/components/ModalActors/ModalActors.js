@@ -7,13 +7,13 @@ const ActorsPopup = props => {
 
   const [modal, setModal] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggle = (event) =>{ event.preventDefault(); setModal(!modal)};
 
   return (
-    <div>
-      <Button onClick={toggle}>
+    <>
+      <button onClick={toggle}>
         {buttonLabel}
-      </Button>
+      </button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Add Actors</ModalHeader>
         <ModalBody>
@@ -28,7 +28,7 @@ const ActorsPopup = props => {
           </Button>
         </ModalFooter>
       </Modal>
-    </div>
+    </>
   );
 };
 
