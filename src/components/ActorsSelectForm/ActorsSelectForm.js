@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
-import * as dataService from "../../dataService";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; // ES6
 
-const ActorsSelectForm = props => {
+import * as dataService from '../../dataService';
+
+const ActorsSelectForm = ({ onActorSelected }) => {
   let [actors, setActors] = useState([]);
   let [selectedActors, setSelectedActors] = useState([]);
   let [viewActors, setViewActors] = useState([]);
@@ -19,7 +21,10 @@ const ActorsSelectForm = props => {
   const onClickAddActor = actor => {
     let selectedNewActors = [...selectedActors];
     selectedNewActors.push(actor);
-    setSelectedActors(selectedNewActors);
+    if(onActorSelected && typeof onActorSelected === 'function'){
+      onActorSelected(actor);
+    }
+    //setSelectedActors(selectedNewActors);
   };
 
   const onChangeSearchField = e => {
@@ -52,13 +57,10 @@ const ActorsSelectForm = props => {
                 <input
                   className="form-control"
                   type="text"
-                  
                   onChange={onChangeSearchField}
                 />
                 <div className="input-group-append">
-                  <span className="input-group-text">
-                    search
-                  </span>
+                  <span className="input-group-text">search</span>
                 </div>
               </div>
             </td>
@@ -66,7 +68,7 @@ const ActorsSelectForm = props => {
           {viewActors.map(act => {
             return (
               <tr>
-                <td>{act.firstName + " " + act.lastName}</td>
+                <td>{act.firstName + ' ' + act.lastName}</td>
                 <td>
                   <button
                     type="button"
@@ -85,4 +87,7 @@ const ActorsSelectForm = props => {
   );
 };
 
+ActorsSelectForm.propTypes = {
+  onActorSelected: PropTypes.func.isRequired
+};
 export default ActorsSelectForm;

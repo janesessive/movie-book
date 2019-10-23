@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { validateField } from "./MovieFormValidation";
 import ActorsPopup from '../ModalActors/ModalActors';
+import Axios from "axios";
 
 const MovieForm = props => {
   const [movie, setMovie] = useState({
@@ -17,6 +18,12 @@ const MovieForm = props => {
   let [errors, setErrors] = useState({});
   let [modal, setModal] = useState({ show: false });
 
+  const onActorSelectedHandler = (actor)=>{
+    debugger;
+    console.log(actor);
+    //Axios.post({movieId: 2, actors:[]});
+     
+  }
   const onFieldChange = e => {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -91,7 +98,7 @@ const MovieForm = props => {
               
             />
             <div className="input-group-append">
-        <ActorsPopup className="input-group-text" buttonLabel="..."/>
+        <ActorsPopup onActorSelected={onActorSelectedHandler} className="input-group-text" buttonLabel="..."/>
       </div>
       </div>
             
