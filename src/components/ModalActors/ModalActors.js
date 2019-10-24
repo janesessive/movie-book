@@ -5,15 +5,26 @@ import ActorsSelectForm from '../ActorsSelectForm/ActorsSelectForm';
 const ActorsPopup = ({ buttonLabel, className, onActorSelected }) => {
   const [modal, setModal] = useState(false);
 
+  let [selectedActors, setSelectedActors] = useState([]);
+
   const toggle = event => {
     event.preventDefault();
     setModal(!modal);
   };
 
-  const onActorSelectedHandler = actor => {
+  const onApplyClick = (event
+    ) => {
     if (onActorSelected && typeof onActorSelected === 'function') {
-      onActorSelected(actor);
+      onActorSelected(selectedActors);
     }
+    toggle(event);
+
+  }
+
+  const onActorSelectedHandler = actor => {
+    let selectedNewActors = [...selectedActors];
+    selectedNewActors.push(actor);
+    setSelectedActors(selectedNewActors);   
   };
 
   return (
@@ -22,10 +33,11 @@ const ActorsPopup = ({ buttonLabel, className, onActorSelected }) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Add Actors</ModalHeader>
         <ModalBody>
+        <pre>{JSON.stringify(selectedActors, null, 2)}</pre>
           <ActorsSelectForm onActorSelected={onActorSelectedHandler} />
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" onClick={onApplyClick}>
             Apply
           </Button>{' '}
           <Button color="secondary" onClick={toggle}>

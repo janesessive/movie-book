@@ -5,7 +5,7 @@ import * as dataService from '../../dataService';
 
 const ActorsSelectForm = ({ onActorSelected }) => {
   let [actors, setActors] = useState([]);
-  let [selectedActors, setSelectedActors] = useState([]);
+  
   let [viewActors, setViewActors] = useState([]);
 
   useEffect(() => {
@@ -19,12 +19,8 @@ const ActorsSelectForm = ({ onActorSelected }) => {
   }, []);
 
   const onClickAddActor = actor => {
-    let selectedNewActors = [...selectedActors];
-    selectedNewActors.push(actor);
-    if(onActorSelected && typeof onActorSelected === 'function'){
-      onActorSelected(actor);
-    }
-    //setSelectedActors(selectedNewActors);
+    onActorSelected(actor);
+    
   };
 
   const onChangeSearchField = e => {
@@ -48,7 +44,7 @@ const ActorsSelectForm = ({ onActorSelected }) => {
 
   return (
     <div>
-      <pre>{JSON.stringify(selectedActors, null, 2)}</pre>
+      
       <table className="table table-hover">
         <tbody>
           <tr>
